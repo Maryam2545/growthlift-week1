@@ -30,10 +30,16 @@ nav a {
     color: #333;
     margin: 15px;
     font-weight: 600;
+
+    /* Week 2 Day 2 - Transition */
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
 nav a:hover {
-    color: #007bff;
+    color: white;
+    background: #007bff;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 main {
@@ -74,6 +80,14 @@ footer {
     background-color: lightblue;
     padding: 20px;
     border-radius: 8px;
+
+    /* Week 2 Day 2 - Card Transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 123, 255, 0.25);
 }
 
 .wide-card {
@@ -96,5 +110,54 @@ footer {
     .tall-card {
         grid-column: span 1;
         grid-row: span 1;
+    }
+}
+
+
+/* =========================
+   WEEK 2 DAY 2
+   CSS ANIMATIONS
+   ========================= */
+
+/* Fade In Up Animation */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+
+/* Pulsing Dot */
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #00c864;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.6);
+        opacity: 0.4;
     }
 }

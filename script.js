@@ -3,6 +3,7 @@
 // ================================
 
 // VARIABLES
+
 let name = "Maryam";
 const company = "GrowthLift";
 var oldStyle = "Avoid this";
@@ -12,7 +13,9 @@ console.log("Company:", company);
 console.log("Old Style:", oldStyle);
 
 
+// ================================
 // DATA TYPES
+// ================================
 
 // String
 let greeting = "Hello World";
@@ -40,7 +43,9 @@ let intern = {
 console.log(intern);
 
 
+// ================================
 // FUNCTIONS
+// ================================
 
 // Regular function
 function greet(name) {
@@ -56,7 +61,9 @@ const greetArrow = (name) => "Hello " + name;
 console.log(greetArrow("Maryam"));
 
 
+// ================================
 // LOOPS
+// ================================
 
 // For loop
 for (let i = 0; i < 5; i++) {
@@ -70,7 +77,9 @@ skills.forEach(skill => {
 });
 
 
+// ================================
 // CONDITIONALS
+// ================================
 
 let isOnlineStatus = true;
 
@@ -81,6 +90,74 @@ if (isOnlineStatus) {
 }
 
 
+// ================================
 // TEMPLATE LITERALS
+// ================================
 
 console.log(`Welcome to ${company}, ${name}!`);
+
+
+// ==========================================
+// DAY 4 - DOM MANIPULATION
+// ==========================================
+
+// Selecting elements
+
+const heading = document.querySelector("h1");
+const cards = document.querySelectorAll(".card");
+const hero = document.getElementById("hero");
+
+console.log("querySelector:", heading);
+console.log("querySelectorAll:", cards);
+console.log("getElementById:", hero);
+
+
+// Changing content and style
+
+hero.textContent = "Hello from JavaScript!";
+hero.style.color = "#00C864";
+
+
+// Adding, removing and toggling classes
+
+cards[0].classList.add("highlighted");
+
+cards[0].classList.remove("highlighted");
+
+cards[0].classList.toggle("highlighted");
+
+
+// ==========================================
+// DAY 4 - TAB SWITCHER
+// ==========================================
+
+const tabs = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
+
+tabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        // Remove active class from all tabs
+        tabs.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        // Add active class to clicked tab
+        tab.classList.add("active");
+
+
+        // Hide all tab contents
+        tabContents.forEach(content => {
+            content.classList.remove("active");
+        });
+
+
+        // Show selected tab content
+        const selectedTab = document.getElementById(tab.dataset.tab);
+
+        selectedTab.classList.add("active");
+
+    });
+
+});

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+
 body {
     margin: 0;
     padding: 0;
@@ -7,6 +8,7 @@ body {
     background-color: #f4f4f4;
     color: #333;
 }
+
 
 header {
     background-color: #333;
@@ -16,14 +18,20 @@ header {
     text-align: center;
 }
 
+
 h1 {
     margin: 0;
+
+    /* Week 2 Day 2 - Animation */
+    animation: fadeInUp 0.8s ease forwards;
 }
+
 
 nav {
     text-align: center;
     padding: 15px;
 }
+
 
 nav a {
     text-decoration: none;
@@ -35,6 +43,7 @@ nav a {
     transition: color 0.3s ease, background 0.3s ease;
 }
 
+
 nav a:hover {
     color: white;
     background: #007bff;
@@ -42,19 +51,23 @@ nav a:hover {
     border-radius: 5px;
 }
 
+
 main {
     padding: 20px;
     margin: 20px;
 }
 
+
 section {
     margin-bottom: 20px;
 }
+
 
 img {
     max-width: 100%;
     border-radius: 8px;
 }
+
 
 footer {
     background-color: #333;
@@ -65,9 +78,9 @@ footer {
 }
 
 
-/* =========================
+/* =================================
    WEEK 2 DAY 1 - CSS GRID
-   ========================= */
+   ================================= */
 
 .grid-section {
     display: grid;
@@ -75,6 +88,7 @@ footer {
     gap: 24px;
     padding: 20px;
 }
+
 
 .grid-card {
     background-color: lightblue;
@@ -85,14 +99,17 @@ footer {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+
 .grid-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(0, 123, 255, 0.25);
+    box-shadow: 0 12px 32px rgba(0, 200, 100, 0.15);
 }
+
 
 .wide-card {
     grid-column: span 2;
 }
+
 
 .tall-card {
     grid-row: span 2;
@@ -102,6 +119,7 @@ footer {
 /* Responsive Grid */
 
 @media (max-width: 700px) {
+
     .grid-section {
         grid-template-columns: 1fr;
     }
@@ -114,14 +132,15 @@ footer {
 }
 
 
-/* =========================
-   WEEK 2 DAY 2
-   CSS ANIMATIONS
-   ========================= */
+/* =================================
+   WEEK 2 DAY 2 - CSS ANIMATIONS
+   ================================= */
+
 
 /* Fade In Up Animation */
 
 @keyframes fadeInUp {
+
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -133,10 +152,6 @@ footer {
     }
 }
 
-h1 {
-    animation: fadeInUp 0.8s ease forwards;
-}
-
 
 /* Pulsing Dot */
 
@@ -144,12 +159,15 @@ h1 {
     display: inline-block;
     width: 10px;
     height: 10px;
-    background: #00c864;
+    background: #00C864;
     border-radius: 50%;
+
     animation: pulse 2s ease-in-out infinite;
 }
 
+
 @keyframes pulse {
+
     0%,
     100% {
         transform: scale(1);
@@ -160,4 +178,59 @@ h1 {
         transform: scale(0.6);
         opacity: 0.4;
     }
+}
+
+
+/* =================================
+   WEEK 2 DAY 4 - DOM / TAB SWITCHER
+   ================================= */
+
+.tab-section {
+    margin-top: 30px;
+}
+
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+
+.tab-btn {
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    background-color: #ddd;
+    color: #333;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+
+.tab-btn.active {
+    background-color: #333;
+    color: white;
+}
+
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+}
+
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* DOM class practice */
+
+.highlighted {
+    border: 2px solid #00C864;
 }

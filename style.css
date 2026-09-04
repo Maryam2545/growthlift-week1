@@ -234,3 +234,58 @@ footer {
 .highlighted {
     border: 2px solid #00C864;
 }
+
+/* =================================
+   WEEK 2 DAY 5 - FETCH API
+   RANDOM QUOTE
+   ================================= */
+
+.quote-section {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.quote-section h2 {
+    margin-bottom: 20px;
+}
+
+#quote-box {
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+}
+
+#quote-text {
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+#quote-author {
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+#new-quote {
+    border: none;
+    padding: 12px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+
+    /* Day 5 - Transition */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#new-quote:hover {
+    background-color: #00C864;
+    transform: translateY(-3px);
+}

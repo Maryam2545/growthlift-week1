@@ -161,3 +161,46 @@ tabs.forEach(tab => {
     });
 
 });
+
+// ==========================================
+// DAY 5 - FETCH API
+// RANDOM QUOTE GENERATOR
+// ==========================================
+
+const quoteText = document.getElementById("quote-text");
+const quoteAuthor = document.getElementById("quote-author");
+const quoteButton = document.getElementById("new-quote");
+
+function getQuote() {
+
+    quoteText.textContent = "Loading...";
+    quoteAuthor.textContent = "";
+
+    fetch("https://dummyjson.com/quotes/random")
+
+        .then(response => response.json())
+
+        .then(data => {
+
+            console.log("Quote Data:", data);
+
+            quoteText.textContent = `"${data.quote}"`;
+
+            quoteAuthor.textContent = `— ${data.author}`;
+
+        })
+
+        .catch(error => {
+
+            console.error("Error:", error);
+
+            quoteText.textContent = "Sorry, something went wrong.";
+
+            quoteAuthor.textContent = "";
+
+        });
+}
+
+quoteButton.addEventListener("click", getQuote);
+
+getQuote();

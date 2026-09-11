@@ -1,34 +1,53 @@
 function Contact() {
   return (
-    <div>
-      <h1>Contact</h1>
+    <div className="min-h-screen bg-gray-900 text-white p-8">
+      <h1 className="text-4xl font-bold mb-8">
+        Contact
+      </h1>
 
-      <form>
-        <div>
-          <label>Name</label>
-          <br />
-          <input type="text" placeholder="Enter your name" />
+      <form className="max-w-xl bg-gray-800 rounded-xl p-6 border border-gray-700">
+        <div className="mb-5">
+          <label className="block text-gray-300 mb-2">
+            Name
+          </label>
+
+          <input
+            type="text"
+            placeholder="Enter your name"
+            className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white focus:border-green-400 outline-none"
+          />
         </div>
 
-        <br />
+        <div className="mb-5">
+          <label className="block text-gray-300 mb-2">
+            Email
+          </label>
 
-        <div>
-          <label>Email</label>
-          <br />
-          <input type="email" placeholder="Enter your email" />
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white focus:border-green-400 outline-none"
+          />
         </div>
 
-        <br />
+        <div className="mb-5">
+          <label className="block text-gray-300 mb-2">
+            Message
+          </label>
 
-        <div>
-          <label>Message</label>
-          <br />
-          <textarea placeholder="Enter your message"></textarea>
+          <textarea
+            placeholder="Enter your message"
+            rows="5"
+            className="w-full px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 text-white focus:border-green-400 outline-none"
+          ></textarea>
         </div>
 
-        <br />
-
-        <button type="submit">Send</button>
+        <button
+          type="submit"
+          className="px-6 py-3 bg-green-500 text-gray-900 font-bold rounded-lg hover:bg-green-400 transition-colors"
+        >
+          Send Message
+        </button>
       </form>
     </div>
   );

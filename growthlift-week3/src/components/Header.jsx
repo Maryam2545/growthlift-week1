@@ -2,14 +2,18 @@ import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
-    <header>
-      <h1>GrowthLift Internship</h1>
+    <header className="flex flex-col md:flex-row items-center justify-between px-8 py-4 bg-gray-900 border-b border-gray-800">
+      <h1 className="text-2xl md:text-4xl font-bold text-white mb-4 md:mb-0">
+        GrowthLift Internship
+      </h1>
 
-      <nav>
+      <nav className="flex gap-6">
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "active-link" : ""
+            isActive
+              ? "text-green-400 border-b-2 border-green-400"
+              : "text-gray-400 hover:text-green-400 transition-colors font-medium"
           }
         >
           Home
@@ -18,7 +22,9 @@ function Header() {
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ? "active-link" : ""
+            isActive
+              ? "text-green-400 border-b-2 border-green-400"
+              : "text-gray-400 hover:text-green-400 transition-colors font-medium"
           }
         >
           About
@@ -27,7 +33,9 @@ function Header() {
         <NavLink
           to="/projects"
           className={({ isActive }) =>
-            isActive ? "active-link" : ""
+            isActive
+              ? "text-green-400 border-b-2 border-green-400"
+              : "text-gray-400 hover:text-green-400 transition-colors font-medium"
           }
         >
           Projects
@@ -36,7 +44,9 @@ function Header() {
         <NavLink
           to="/contact"
           className={({ isActive }) =>
-            isActive ? "active-link" : ""
+            isActive
+              ? "text-green-400 border-b-2 border-green-400"
+              : "text-gray-400 hover:text-green-400 transition-colors font-medium"
           }
         >
           Contact

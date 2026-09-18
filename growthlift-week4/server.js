@@ -1,91 +1,63 @@
+require("dotenv").config();
+
 const express = require("express");
+const mongoose = require("mongoose");
+const Task = require("./models/Task");
 
 const app = express();
 const PORT = 3000;
 
-// Middleware
-app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
-  next();
-});
-
 app.use(express.json());
 
-// In-memory tasks
-let tasks = [
-  {
-    id: 1,
-    title: "Learn Express",
-    done: false
-  },
-  {
-    id: 2,
-    title: "Build REST API",
-    done: false
-  }
-];
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
 
 // GET all tasks
-app.get("/api/tasks", (req, res) => {
+app.get("/api/tasks", async (req, res) => {
+  const tasks = await Task.find();
   res.json(tasks);
 });
 
+// POST new task
+app.post("/api/tasks", async (req, res) => {
+  const task = await Task.create({
+    title: req.body.title
+  });
+
+  res.status(201).json(task);
+});
+
 // GET one task
-app.get("/api/tasks/:id", (req, res) => {
-  const task = tasks.find(
-    t => t.id === parseInt(req.params.id)
-  );
+app.get("/api/tasks/:id", async (req, res) => {
+  const task = await Task.findById(req.params.id);
 
   if (!task) {
-    return res.status(404).json({
-      message: "Task not found"
-    });
+    return res.status(404).json({ message: "Not found" });
   }
 
   res.json(task);
 });
 
-// POST - create task
-app.post("/api/tasks", (req, res) => {
-  const newTask = {
-    id: tasks.length + 1,
-    title: req.body.title,
-    done: false
-  };
-
-  tasks.push(newTask);
-
-  res.status(201).json(newTask);
-});
-
-// PUT - update task
-app.put("/api/tasks/:id", (req, res) => {
-  const task = tasks.find(
-    t => t.id === parseInt(req.params.id)
+// PUT update task
+app.put("/api/tasks/:id", async (req, res) => {
+  const task = await Task.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
   );
-
-  if (!task) {
-    return res.status(404).json({
-      message: "Not found"
-    });
-  }
-
-  task.title = req.body.title;
-  task.done = req.body.done;
 
   res.json(task);
 });
 
-// DELETE - delete task
-app.delete("/api/tasks/:id", (req, res) => {
-  tasks = tasks.filter(
-    t => t.id !== parseInt(req.params.id)
-  );
+// DELETE task
+app.delete("/api/tasks/:id", async (req, res) => {
+  await Task.findByIdAndDelete(req.params.id);
 
   res.status(204).send();
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

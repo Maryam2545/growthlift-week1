@@ -9,12 +9,16 @@ const Task = require("./models/Task");
 
 const app = express();
 
+const authRoutes = require("./routes/auth"); 
+
 // Security middleware
 app.use(helmet());
 app.use(cors());
 
 // JSON middleware
 app.use(express.json());
+
+app.use("/api/auth", authRoutes);
 
 // MongoDB connection
 mongoose

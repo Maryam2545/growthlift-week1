@@ -11,6 +11,7 @@ const app = express();
 
 const authRoutes = require("./routes/auth"); 
 
+const protect = require("./middleware/auth");
 // Security middleware
 app.use(helmet());
 app.use(cors());
@@ -19,7 +20,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
-
 // MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
@@ -32,7 +32,7 @@ mongoose
 
 
 // GET all tasks
-app.get("/api/tasks", async (req, res, next) => {
+app.get("/api/tasks", protect, async (req, res, next) => {
   try {
     const tasks = await Task.find();
     res.json(tasks);
@@ -43,7 +43,7 @@ app.get("/api/tasks", async (req, res, next) => {
 
 
 // GET one task
-app.get("/api/tasks/:id", async (req, res) => {
+app.get("/api/tasks/:id", protect, async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
 
@@ -64,7 +64,7 @@ app.get("/api/tasks/:id", async (req, res) => {
 
 
 // POST new task
-app.post("/api/tasks", async (req, res, next) => {
+app.post("/api/tasks", protect, async (req, res, next) => {
  console.log("POST BODY:", req.body);
   // Input validation
   if (!req.body.title) {
@@ -84,7 +84,7 @@ app.post("/api/tasks", async (req, res, next) => {
 
 
 // PUT update task
-app.put("/api/tasks/:id", async (req, res) => {
+app.put("/api/tasks/:id", protect, async (req, res) => {
   try {
 
     const task = await Task.findByIdAndUpdate(
@@ -121,7 +121,8 @@ app.put("/api/tasks/:id", async (req, res) => {
 
 
 // DELETE task
-app.delete("/api/tasks/:id", async (req, res) => {
+app.delete("/api/tasks/:id", protect, async (req, res) => {
+  
   try {
 
     const task = await Task.findByIdAndDelete(req.params.id);
